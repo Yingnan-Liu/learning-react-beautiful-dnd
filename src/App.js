@@ -6,6 +6,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 
 const App = () => {
   const [data, setData] = useState(initialData);
+  const onDragStart = (start) => {};
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     if (!destination) {
@@ -35,7 +36,11 @@ const App = () => {
     setData(newData);
   };
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext
+      onDragEnd={onDragEnd}
+      onDragStart={onDragStart}
+      onDragUpdate={onDragUpdate}
+    >
       <div className="App">
         {data.columnOrder.map((columnId) => {
           const column = data.columns[columnId];
